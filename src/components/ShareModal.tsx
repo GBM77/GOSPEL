@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, Share2, Sparkles, Download } from 'lucide-react';
 import { WhisperItem } from '../data/whispers';
+import treeImg from '../assets/images/tree_by_streams_1790301842480.jpg';
 
 interface ShareModalProps {
   whisper: WhisperItem;
@@ -55,7 +56,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
           {/* Card Top Image Strip */}
           <div className="relative h-28 w-full overflow-hidden">
             <img
-              src="/src/assets/images/tree_by_streams_1790301842480.jpg"
+              src={treeImg}
               alt="栽在溪水旁的繁盛綠樹"
               className="h-full w-full object-cover"
               referrerPolicy="no-referrer"

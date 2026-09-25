@@ -66,14 +66,40 @@ export const InstallAppModal: React.FC<InstallAppModalProps> = ({
         {/* Modal Header */}
         <div className="space-y-1.5">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#53654E] bg-[#E9EFE8] px-3 py-0.5 rounded-full">
-            <Download className="h-3.5 w-3.5 text-[#3A6B3E]" />
-            <span>手機與電腦離線安裝指南 (PWA / 原生啟動)</span>
+            <Monitor className="h-3.5 w-3.5 text-[#3A6B3E]" />
+            <span>免安裝 · 任何瀏覽器直接開啟使用</span>
           </div>
           <h3 className="font-serif-tc text-xl sm:text-2xl font-bold text-[#2C2724]">
-            下載與安裝「天父耳語」
+            網頁版直接開啟與書籤儲存
           </h3>
           <p className="text-xs text-[#7A6A55] leading-relaxed">
-            現代標準 Progressive Web App（PWA）可免除傳統 APK 繁瑣安裝包與惡意軟體風險，直接轉化為手機桌面 App 或電腦獨立應用程式，支援離線快取、全螢幕開啟、背景音播放與即時啟動。
+            本應用程式為標準 Web 網頁版，<strong>無需下載任何安裝檔或 App</strong>。只要用手機或電腦的任何瀏覽器（Chrome, Safari, Edge, LINE 內建等）打開網址即可完全使用所有靈糧金句朗讀與背景音！
+          </p>
+        </div>
+
+        {/* Quick Direct Link Copy */}
+        <div className="rounded-2xl bg-[#F7F4EE] border border-[#E3D9CB] p-4 space-y-2">
+          <span className="text-xs font-bold text-[#4A3E2F] block">
+            🔗 複製網址加入瀏覽器書籤：
+          </span>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              readOnly
+              value={currentUrl}
+              className="flex-1 bg-white border border-[#DDD0BF] rounded-xl px-3 py-1.5 text-xs text-[#5C4F3E] select-all font-mono"
+            />
+            <button
+              type="button"
+              onClick={handleCopyUrl}
+              className="flex items-center gap-1 bg-[#2C2724] text-white px-3 py-1.5 rounded-xl text-xs font-semibold hover:bg-[#433B36] transition-colors shrink-0"
+            >
+              {copiedUrl ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              <span>{copiedUrl ? '已複製' : '複製網址'}</span>
+            </button>
+          </div>
+          <p className="text-[11px] text-[#8E7E6C]">
+            💡 建議直接將此網址加入瀏覽器「我的最愛 / 書籤」或加到手機主畫面，每日靈修一點即開！
           </p>
         </div>
 

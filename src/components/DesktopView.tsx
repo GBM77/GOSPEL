@@ -16,9 +16,11 @@ import {
   Search,
   Upload,
   Download,
+  Monitor,
 } from 'lucide-react';
 import { WhisperItem, CATEGORIES } from '../data/whispers';
 import { AudioPlayerBar } from './AudioPlayerBar';
+import treeImg from '../assets/images/tree_by_streams_1790301842480.jpg';
 
 interface DesktopViewProps {
   whisper: WhisperItem;
@@ -133,10 +135,10 @@ export const DesktopView: React.FC<DesktopViewProps> = ({
               <button
                 type="button"
                 onClick={onOpenInstallModal}
-                className="flex items-center gap-1.5 rounded-xl bg-[#2D5A38] text-white px-3.5 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#23472C] transition-colors shadow-xs"
+                className="flex items-center gap-1.5 rounded-xl border border-[#D5C9B8] bg-[#F7F4EE] px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-[#4A3E2F] hover:bg-[#EFE8DC] transition-colors shadow-xs"
               >
-                <Download className="h-4 w-4" />
-                <span>下載與安裝 App</span>
+                <Monitor className="h-4 w-4 text-[#6D5D4B]" />
+                <span>免安裝 · 瀏覽器直接看</span>
               </button>
             </div>
           </div>
@@ -144,7 +146,7 @@ export const DesktopView: React.FC<DesktopViewProps> = ({
           {/* Hero Right Image Asset */}
           <div className="lg:col-span-5 relative min-h-[220px] lg:min-h-full">
             <img
-              src="/src/assets/images/tree_by_streams_1790301842480.jpg"
+              src={treeImg}
               alt="栽在溪水旁的繁盛綠樹與清澈晨光"
               className="absolute inset-0 h-full w-full object-cover object-center"
               referrerPolicy="no-referrer"

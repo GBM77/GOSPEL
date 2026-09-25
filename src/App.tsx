@@ -57,18 +57,6 @@ export default function App() {
     }
   });
 
-  // Mobile viewport detection
-  const [isActualMobile, setIsActualMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const checkScreen = () => {
-      setIsActualMobile(window.innerWidth < 768);
-    };
-    checkScreen();
-    window.addEventListener('resize', checkScreen);
-    return () => window.removeEventListener('resize', checkScreen);
-  }, []);
-
   // Save bookmarks
   useEffect(() => {
     try {
@@ -196,23 +184,7 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-1">
-        {isActualMobile ? (
-          <div className="h-[calc(100vh-65px)]">
-            <PhoneViewCard
-              whisper={currentWhisper}
-              currentIndex={currentWhisperIndex}
-              totalCount={whispers.length}
-              onPrev={handlePrev}
-              onNext={handleNext}
-              onRandom={handleRandom}
-              isBookmarked={bookmarkedIds.includes(currentWhisper.id)}
-              onToggleBookmark={handleToggleBookmark}
-              onOpenShare={() => setIsShareModalOpen(true)}
-              onOpenCustomScripture={() => setIsCustomScriptureModalOpen(true)}
-              onOpenInstallModal={() => setIsInstallModalOpen(true)}
-            />
-          </div>
-        ) : isPhoneFrame ? (
+        {isPhoneFrame ? (
           <PhoneSimulatorFrame onExitPhoneMode={() => setIsPhoneFrame(false)}>
             <PhoneViewCard
               whisper={currentWhisper}
@@ -249,8 +221,8 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer in Desktop */}
-      {!isActualMobile && !isPhoneFrame && (
+      {/* Footer */}
+      {!isPhoneFrame && (
         <footer className="border-t border-[#E8DFD4] bg-[#FAF8F5] py-8 text-center text-xs text-[#8A7966]">
           <div className="max-w-7xl mx-auto px-4 space-y-2">
             <p className="font-serif-tc text-sm text-[#4E4133]">

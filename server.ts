@@ -10,7 +10,22 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000;
+
+// Parse port from CLI or environment variable or default to 3000
+function getPort(): number {
+  const args = process.argv.slice(2);
+  const portIndex = args.indexOf('--port');
+  if (portIndex !== -1 && args[portIndex + 1]) {
+    const parsed = parseInt(args[portIndex + 1], 10);
+    if (!isNaN(parsed)) return parsed;
+  }
+  if (process.env.PORT) {
+    const parsed = parseInt(process.env.PORT, 10);
+    if (!isNaN(parsed)) return parsed;
+  }
+  return 3000;
+}
+const port = getPort();
 
 app.use(express.json({ limit: '10mb' }));
 
@@ -155,8 +170,9 @@ async function setupServer() {
     });
   }
 
-  app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
+  const host = '0.0.0.0';
+  app.listen(Number(port), host, () => {
+    console.log(`Server listening on http://${host}:${port}`);
   });
 }
 

@@ -169,15 +169,15 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Install / Download App Button (Featured) */}
+        {/* Browser Access & Bookmark Info */}
         <button
           type="button"
           onClick={onOpenInstallModal}
-          className="flex items-center gap-1.5 rounded-lg bg-[#2D5A38] text-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold hover:bg-[#23472C] transition-all shadow-xs"
-          title="下載與安裝至手機或電腦"
+          className="flex items-center gap-1.5 rounded-lg bg-[#EFE8DD] text-[#4A3E2F] border border-[#DDD3C4] px-2.5 sm:px-3 py-1.5 text-xs font-semibold hover:bg-[#E5DDCF] transition-all shadow-xs"
+          title="免安裝直接使用說明與主畫面捷徑"
         >
-          <Download className="h-3.5 w-3.5" />
-          <span className="whitespace-nowrap">安裝App</span>
+          <Monitor className="h-3.5 w-3.5 text-[#6D5D4B]" />
+          <span className="whitespace-nowrap">瀏覽器直接開啟</span>
         </button>
 
         {/* Upload Custom Scripture */}

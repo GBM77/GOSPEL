@@ -6,6 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(() => {
   return {
+    base: './',
     plugins: [
       react(),
       tailwindcss(),
@@ -13,36 +14,33 @@ export default defineConfig(() => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icon.svg'],
         manifest: {
-          id: '/',
           name: '天父耳語 · 每日靈糧與金句朗讀',
           short_name: '天父耳語',
           description: '中英對照聖經金句與天父溫柔耳語，晝夜思想如樹栽在溪水旁。提供溫柔語音朗讀、輕柔背景音與手機/電腦完美安裝。',
           theme_color: '#FAF8F5',
           background_color: '#FAF8F5',
           display: 'standalone',
-          start_url: '/',
-          scope: '/',
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: 'pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: 'pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: 'pwa-maskable-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',
             },
             {
-              src: '/icon.svg',
+              src: 'icon.svg',
               sizes: 'any',
               type: 'image/svg+xml',
               purpose: 'any',
@@ -83,8 +81,7 @@ export default defineConfig(() => {
           ],
         },
         devOptions: {
-          enabled: true,
-          type: 'module',
+          enabled: false,
         },
       }),
     ],
