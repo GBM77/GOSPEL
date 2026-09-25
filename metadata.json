@@ -1,0 +1,6 @@
+{
+  "name": "天父耳語 · 每日靈糧與金句朗讀",
+  "description": "中英對照聖經金句與天父溫柔耳語，晝夜思想如溪水旁的繁茂生命。提供溫柔語音朗讀、加力啟示思想與手機版完美單頁體驗。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
