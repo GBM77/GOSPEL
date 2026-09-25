@@ -15,6 +15,7 @@ import { ShareModal } from './components/ShareModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { AmbianceSelectorModal } from './components/AmbianceSelectorModal';
 import { CustomScriptureModal } from './components/CustomScriptureModal';
+import { InstallAppModal } from './components/InstallAppModal';
 
 export default function App() {
   const [whispers, setWhispers] = useState<WhisperItem[]>(() => {
@@ -45,6 +46,7 @@ export default function App() {
   const [isDrawModalOpen, setIsDrawModalOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
   const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
 
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
@@ -189,6 +191,7 @@ export default function App() {
         currentAmbiance={currentAmbiance}
         onOpenAmbianceSelector={() => setIsAmbianceModalOpen(true)}
         onOpenCustomScripture={() => setIsCustomScriptureModalOpen(true)}
+        onOpenInstallModal={() => setIsInstallModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -206,6 +209,7 @@ export default function App() {
               onToggleBookmark={handleToggleBookmark}
               onOpenShare={() => setIsShareModalOpen(true)}
               onOpenCustomScripture={() => setIsCustomScriptureModalOpen(true)}
+              onOpenInstallModal={() => setIsInstallModalOpen(true)}
             />
           </div>
         ) : isPhoneFrame ? (
@@ -221,6 +225,7 @@ export default function App() {
               onToggleBookmark={handleToggleBookmark}
               onOpenShare={() => setIsShareModalOpen(true)}
               onOpenCustomScripture={() => setIsCustomScriptureModalOpen(true)}
+              onOpenInstallModal={() => setIsInstallModalOpen(true)}
             />
           </PhoneSimulatorFrame>
         ) : (
@@ -239,6 +244,7 @@ export default function App() {
             selectedCategory={selectedCategory}
             onSelectCategory={handleSelectCategory}
             onOpenCustomScripture={() => setIsCustomScriptureModalOpen(true)}
+            onOpenInstallModal={() => setIsInstallModalOpen(true)}
           />
         )}
       </main>
@@ -250,14 +256,22 @@ export default function App() {
             <p className="font-serif-tc text-sm text-[#4E4133]">
               「唯喜愛耶和華的法則，晝夜思想，此人便為有福！他要像一棵樹栽在溪水旁，按時結果子，葉子也不枯乾。凡他所做的都順利。」
             </p>
-            <p className="text-[11px] text-[#A39280]">
-              天父耳語 · 每日靈糧與金句朗讀 · 中英對照 · 溪水微風海浪伴讀 · 靈魂深處得享安息
-            </p>
+            <div className="flex items-center justify-center gap-4 text-[11px] text-[#A39280] pt-1">
+              <span>天父耳語 · 每日靈糧與金句朗讀</span>
+              <span>·</span>
+              <button
+                type="button"
+                onClick={() => setIsInstallModalOpen(true)}
+                className="underline hover:text-[#524434] transition-colors"
+              >
+                下載與安裝本程式 (手機/電腦)
+              </button>
+            </div>
           </div>
         </footer>
       )}
 
-      {/* 1. Ambiance Soundscape Selector Modal (微風、海浪、瀑布、溪水、甘霖) */}
+      {/* 1. Ambiance Soundscape Selector Modal */}
       <AmbianceSelectorModal
         isOpen={isAmbianceModalOpen}
         onClose={() => setIsAmbianceModalOpen(false)}
@@ -269,7 +283,7 @@ export default function App() {
         onChangeVolume={handleChangeAmbianceVolume}
       />
 
-      {/* 2. Custom Scripture Upload Modal (自行上傳經句) */}
+      {/* 2. Custom Scripture Upload Modal */}
       <CustomScriptureModal
         isOpen={isCustomScriptureModalOpen}
         onClose={() => setIsCustomScriptureModalOpen(false)}
@@ -302,6 +316,12 @@ export default function App() {
         onRemoveBookmark={(id) =>
           setBookmarkedIds((prev) => prev.filter((item) => item !== id))
         }
+      />
+
+      {/* 6. Install App Modal (PWA / Mobile & Desktop) */}
+      <InstallAppModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
       />
     </div>
   );

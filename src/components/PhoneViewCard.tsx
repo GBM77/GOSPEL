@@ -11,6 +11,7 @@ import {
   Droplets,
   Heart,
   Upload,
+  Download,
 } from 'lucide-react';
 import { WhisperItem } from '../data/whispers';
 import { AudioPlayerBar } from './AudioPlayerBar';
@@ -26,6 +27,7 @@ interface PhoneViewCardProps {
   onToggleBookmark: () => void;
   onOpenShare: () => void;
   onOpenCustomScripture?: () => void;
+  onOpenInstallModal?: () => void;
 }
 
 export const PhoneViewCard: React.FC<PhoneViewCardProps> = ({
@@ -39,6 +41,7 @@ export const PhoneViewCard: React.FC<PhoneViewCardProps> = ({
   onToggleBookmark,
   onOpenShare,
   onOpenCustomScripture,
+  onOpenInstallModal,
 }) => {
   const [activeTab, setActiveTab] = useState<'scripture' | 'whisper' | 'meditation' | 'prayer'>('scripture');
   const [copied, setCopied] = useState(false);
@@ -57,7 +60,7 @@ export const PhoneViewCard: React.FC<PhoneViewCardProps> = ({
   return (
     <div className="flex flex-col h-full bg-[#FAF8F5] text-[#2C2724] select-none">
       {/* Phone Header Toolbar */}
-      <div className="shrink-0 flex items-center justify-between px-4 py-2.5 border-b border-[#EBE4D8] bg-[#FAF8F5]/95">
+      <div className="shrink-0 flex items-center justify-between px-3 sm:px-4 py-2 border-b border-[#EBE4D8] bg-[#FAF8F5]/95">
         <div className="flex items-center gap-1.5 text-xs text-[#7A6A55]">
           <span className="font-semibold text-[#4A3E2F]">{whisper.reference}</span>
           <span aria-hidden="true">·</span>
@@ -67,6 +70,17 @@ export const PhoneViewCard: React.FC<PhoneViewCardProps> = ({
         </div>
 
         <div className="flex items-center gap-1">
+          {onOpenInstallModal && (
+            <button
+              type="button"
+              onClick={onOpenInstallModal}
+              className="px-2 py-1 rounded-lg bg-[#2D5A38] text-white text-[11px] font-semibold flex items-center gap-1 hover:bg-[#23472C] transition-colors"
+              title="安裝App到手機"
+            >
+              <Download className="h-3 w-3" />
+              <span>安裝App</span>
+            </button>
+          )}
           {onOpenCustomScripture && (
             <button
               type="button"

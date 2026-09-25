@@ -11,6 +11,7 @@ import {
   Mountain,
   CloudRain,
   ChevronDown,
+  Download,
 } from 'lucide-react';
 import { AmbianceType, AMBIANCE_TRACKS } from '../utils/audioSpeech';
 
@@ -27,6 +28,7 @@ interface HeaderProps {
   currentAmbiance: AmbianceType;
   onOpenAmbianceSelector: () => void;
   onOpenCustomScripture: () => void;
+  onOpenInstallModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -42,6 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
   currentAmbiance,
   onOpenAmbianceSelector,
   onOpenCustomScripture,
+  onOpenInstallModal,
 }) => {
   const currentTrackObj =
     AMBIANCE_TRACKS.find((t) => t.id === currentAmbiance) || AMBIANCE_TRACKS[0];
@@ -62,16 +65,16 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between border-b border-[#E8DFD4] bg-[#FAF8F5]/90 px-3.5 sm:px-6 py-3 backdrop-blur-md">
+    <header className="sticky top-0 z-30 flex items-center justify-between border-b border-[#E8DFD4] bg-[#FAF8F5]/90 px-3 sm:px-6 py-2.5 sm:py-3 backdrop-blur-md">
       {/* Zone 1: Wordmark */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3">
         <a
           href="#"
           onClick={(e) => {
             e.preventDefault();
             onSelectCategory('all');
           }}
-          className="font-serif-tc text-lg sm:text-xl font-bold tracking-tight text-[#2C2724] hover:text-[#5C4F3E] transition-colors whitespace-nowrap"
+          className="font-serif-tc text-base sm:text-xl font-bold tracking-tight text-[#2C2724] hover:text-[#5C4F3E] transition-colors whitespace-nowrap"
         >
           天父耳語 · 每日靈糧
         </a>
@@ -126,13 +129,13 @@ export const Header: React.FC<HeaderProps> = ({
       </nav>
 
       {/* Zone 3: Primary Actions */}
-      <div className="flex items-center gap-2">
-        {/* Background Sound Selector Dropdown Button (Feature 1 Requested) */}
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        {/* Background Sound Selector Dropdown */}
         <div className="flex items-center rounded-lg border border-[#DCD3C5] bg-[#F3ECE1] shadow-2xs overflow-hidden">
           <button
             type="button"
             onClick={onToggleStreamAmbiance}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium transition-colors ${
+            className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1.5 text-xs font-medium transition-colors ${
               isStreamAmbiancePlaying
                 ? 'bg-[#E5EDE5] text-[#2C4A2E]'
                 : 'text-[#6B5D4D] hover:bg-[#EBE2D4]'
@@ -166,22 +169,33 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Upload Custom Scripture Button for Mobile / Desktop */}
+        {/* Install / Download App Button (Featured) */}
+        <button
+          type="button"
+          onClick={onOpenInstallModal}
+          className="flex items-center gap-1.5 rounded-lg bg-[#2D5A38] text-white px-2.5 sm:px-3 py-1.5 text-xs font-semibold hover:bg-[#23472C] transition-all shadow-xs"
+          title="下載與安裝至手機或電腦"
+        >
+          <Download className="h-3.5 w-3.5" />
+          <span className="whitespace-nowrap">安裝App</span>
+        </button>
+
+        {/* Upload Custom Scripture */}
         <button
           type="button"
           onClick={onOpenCustomScripture}
-          className="flex items-center gap-1 rounded-lg bg-[#F3ECE1] px-2.5 py-1.5 text-xs font-medium text-[#6B5D4D] border border-[#E3D9CB] hover:bg-[#EBE2D4] transition-colors"
+          className="hidden sm:flex items-center gap-1 rounded-lg bg-[#F3ECE1] px-2.5 py-1.5 text-xs font-medium text-[#6B5D4D] border border-[#E3D9CB] hover:bg-[#EBE2D4] transition-colors"
           title="自行上傳經句"
         >
           <Upload className="h-3.5 w-3.5 text-[#8A6A45]" />
-          <span className="hidden sm:inline">上傳經句</span>
+          <span>上傳經句</span>
         </button>
 
         {/* Saved Items mobile */}
         <button
           type="button"
           onClick={onOpenBookmarks}
-          className="lg:hidden flex items-center gap-1 rounded-lg bg-[#F3ECE1] px-2.5 py-1.5 text-xs font-medium text-[#6B5D4D] border border-[#E3D9CB]"
+          className="lg:hidden flex items-center gap-1 rounded-lg bg-[#F3ECE1] px-2 py-1.5 text-xs font-medium text-[#6B5D4D] border border-[#E3D9CB]"
           title="我的收藏"
         >
           <Bookmark className="h-3.5 w-3.5" />
@@ -196,7 +210,7 @@ export const Header: React.FC<HeaderProps> = ({
         <button
           type="button"
           onClick={onTogglePhoneFrame}
-          className={`flex items-center gap-1.5 rounded-lg px-2.5 sm:px-3 py-1.5 text-xs font-medium transition-all shadow-xs ${
+          className={`flex items-center gap-1 sm:gap-1.5 rounded-lg px-2 sm:px-3 py-1.5 text-xs font-medium transition-all shadow-xs ${
             isPhoneFrame
               ? 'bg-[#5C4F3E] text-white hover:bg-[#4B4031]'
               : 'bg-[#2C2724] text-white hover:bg-[#3D3733]'

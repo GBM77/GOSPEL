@@ -15,6 +15,7 @@ import {
   Sun,
   Search,
   Upload,
+  Download,
 } from 'lucide-react';
 import { WhisperItem, CATEGORIES } from '../data/whispers';
 import { AudioPlayerBar } from './AudioPlayerBar';
@@ -34,6 +35,7 @@ interface DesktopViewProps {
   selectedCategory: string;
   onSelectCategory: (cat: string) => void;
   onOpenCustomScripture: () => void;
+  onOpenInstallModal: () => void;
 }
 
 export const DesktopView: React.FC<DesktopViewProps> = ({
@@ -51,6 +53,7 @@ export const DesktopView: React.FC<DesktopViewProps> = ({
   selectedCategory,
   onSelectCategory,
   onOpenCustomScripture,
+  onOpenInstallModal,
 }) => {
   const [copied, setCopied] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -125,6 +128,15 @@ export const DesktopView: React.FC<DesktopViewProps> = ({
               >
                 <Upload className="h-4 w-4 text-[#8A6A45]" />
                 <span>自行上傳聖經經句</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={onOpenInstallModal}
+                className="flex items-center gap-1.5 rounded-xl bg-[#2D5A38] text-white px-3.5 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#23472C] transition-colors shadow-xs"
+              >
+                <Download className="h-4 w-4" />
+                <span>下載與安裝 App</span>
               </button>
             </div>
           </div>
